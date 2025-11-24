@@ -37,5 +37,11 @@ Antes de iniciar, instale:
 
 No terminal, dentro da pasta `backend/`:
 
-```bash
 npm install
+
+---
+
+### ** Usar também**
+
+npm start  
+npm run dev
