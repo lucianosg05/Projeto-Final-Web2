@@ -101,12 +101,12 @@ Com isso, atende aos requisitos de CRUD, autenticação, relacionamentos e consu
 
 # **Como Rodar o Projeto Completo**
 
-## Clonar o repositório
+## Clonar o repositório.
 
 git clone https://github.com/lucianosg05/Projeto-Final-Web2
 cd Projeto-Final-Web2
 
-### No Backend:
+### Backend:
 
 - Instalar dependências
 No terminal:
@@ -122,7 +122,7 @@ Execute:
 
 npm run dev
 
-### No Frontend:
+### Frontend:
 
 - Instalar dependências
   
