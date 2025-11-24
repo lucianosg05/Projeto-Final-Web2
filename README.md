@@ -109,10 +109,9 @@ cd Projeto-Final-Web2
 ### Backend:
 
 - Instalar dependências
-No terminal:
 
-cd backend
-npm install
+-- cd backend
+-- npm install
 
 - Configurar o arquivo .env
 - Criar o banco de dados
@@ -120,18 +119,18 @@ npm install
 - Rodar o servidor backend
 Execute:
 
-npm run dev
+-- npm run dev
 
 ### Frontend:
 
 - Instalar dependências
   
-cd frontend
-npm install
+-- cd frontend
+-- npm install
 
 - Iniciar o frontend
   
-npm start
+-- npm start
 
 ---
 
