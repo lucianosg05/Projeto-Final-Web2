@@ -7,7 +7,7 @@ Implementa autenticação, CRUD completo, rotas protegidas, responsividade e rel
 
 ## Participantes do Projeto
 
-- **Alice Santos**
+- **Alice Santos Monteiro de Barros**
 - **Luciano**
 - **João**
 
@@ -55,7 +55,7 @@ Com isso, atende aos requisitos de CRUD, autenticação, relacionamentos e consu
 
 ---
 
-## **CRUD de Estudantes (Students)**
+## **CRUD de Estudantes**
 - Cadastro de estudantes
 - Listagem completa com nome do curso (JOIN)
 - Edição dos dados
@@ -103,8 +103,8 @@ Com isso, atende aos requisitos de CRUD, autenticação, relacionamentos e consu
 
 ## Clonar o repositório
 
-git clone https://github.com/usuario/nome-do-projeto.git
-cd nome-do-projeto
+git clone https://github.com/lucianosg05/Projeto-Final-Web2
+cd Projeto-Final-Web2
 
 ### No Backend:
 
@@ -126,7 +126,7 @@ npm run dev
 
 - Instalar dependências
   
-cd ../frontend
+cd frontend
 npm install
 
 - Iniciar o frontend
