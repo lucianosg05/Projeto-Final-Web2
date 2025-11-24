@@ -77,7 +77,7 @@ Com isso, atende aos requisitos de CRUD, autenticação, relacionamentos e consu
 - Listar produtos
 - Editar produtos
 - Excluir produtos
-- Consulta por categoria (opcional)
+- Consulta por categoria
 
 ---
 
