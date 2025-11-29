@@ -1,0 +1,78 @@
+CREATE DATABASE IF NOT EXISTS projeto_final_web2
+  DEFAULT CHARACTER SET utf8mb4 
+  COLLATE utf8mb4_unicode_ci;
+USE projeto_final_web2;
+
+-- Tabela de usuários
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('admin','user') NOT NULL DEFAULT 'user',
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Índice para busca por email
+CREATE INDEX idx_users_email ON users(email);
+
+
+
+-- Tabela de categorias
+CREATE TABLE IF NOT EXISTS categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+
+-- Tabela de cursos
+CREATE TABLE IF NOT EXISTS courses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(200) NOT NULL,
+  description TEXT NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+
+-- Tabela de produtos
+CREATE TABLE IF NOT EXISTS products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(200) NOT NULL,
+  description TEXT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  categoryId INT NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (categoryId) REFERENCES categories(id)
+    ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- Índice para busca por categoria
+CREATE INDEX idx_products_categoryId ON products(categoryId);
+
+
+
+-- Tabela de alunos
+CREATE TABLE IF NOT EXISTS students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  courseId INT NULL,
+  enrollmentDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (courseId) REFERENCES courses(id)
+    ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- Índice para busca por curso
+CREATE INDEX idx_students_courseId ON students(courseId);
+
+-- Índice para busca por email
+CREATE INDEX idx_students_email ON students(email);
