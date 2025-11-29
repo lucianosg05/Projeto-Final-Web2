@@ -1,171 +1,78 @@
-# Projeto-Final-Web2
+# Banco de Dados — Sistema de Cursos e Produtos
 
-Este projeto é uma aplicação web completa desenvolvida com **Node.js**, **Express**, **React**, **MySQL** e arquitetura **MVC**, oferecendo um sistema de cadastro e gerenciamento para **Usuários, Alunos, Cursos e Produtos**.  
-Implementa autenticação, CRUD completo, rotas protegidas, responsividade e relacionamento entre tabelas.
+Este banco de dados foi desenvolvido para gerenciar usuários, categorias, produtos, cursos e alunos. O modelo utiliza relacionamentos simples, chaves estrangeiras e organização relacional.
 
----
+## Tabelas Criadas
 
-## Participantes do Projeto
+### 1. users
+Armazena os dados dos usuários do sistema (administradores e usuários comuns).
 
-- **Alice Santos Monteiro de Barros**
-- **Luciano**
-- **João**
+Campos principais:
+- name
+- email (único)
+- password  
+- role (admin / user)
+- createdAt
+- updatedAt
 
----
+### 2. categories
+Armazena categorias usadas para organizar produtos.
 
-# Descrição Geral
+Campos principais:
+- name
+- createdAt
+- updatedAt
 
-O sistema foi criado como um projeto fullstack completo para atender requisitos acadêmicos, incluindo:
+### 3. courses
+Registra os cursos disponíveis na plataforma.
 
-- Backend estruturado em **arquitetura MVC**
-- Frontend responsivo feito com **React**
-- Banco de dados relacional com **MySQL**
-- Autenticação com **JWT** ou possibilidade de sessão
-- CRUD completo com relacionamentos e operações com chave estrangeira
-- Tratamento de erros, rotas organizadas e código modular
+Campos principais:
+- title
+- description
+- createdAt
+- updatedAt
 
-A aplicação permite gerenciar:
+### 4. products
+Armazena produtos associados a categorias.
 
-- Usuários (com login e senha)
-- Alunos
-- Cursos (relacionados a alunos)
-- Produtos
+Campos principais:
+- name
+- description
+- price (DECIMAL 10,2)
+- categoryId
+- createdAt
+- updatedAt
 
-Com isso, atende aos requisitos de CRUD, autenticação, relacionamentos e consultas avançadas.
+Relacionamentos:
+- categoryId → categories.id (N:1)
 
----
+### 5. students
+Registra informações dos alunos.
 
-# Funcionalidades do Sistema
+Campos principais:
+- name
+- email (único)
+- courseId
+- enrollmentDate (data de matrícula)
+- createdAt
+- updatedAt
 
-## **Autenticação**
-- Login com e-mail e senha
-- Senhas criptografadas com **bcrypt**
-- Armazenamento do token no **localStorage**
-- Rotas protegidas no backend
-- Rotas privadas no frontend via `PrivateRoute`
+Relacionamentos:
+- courseId → courses.id (N:1)
 
----
+## Relacionamentos Principais
 
-## **CRUD de Usuários**
-- Criar conta
-- Listar usuários
-- Atualizar informações
-- Excluir usuários
-- Exibir usuário logado
+- products → categories: muitos produtos pertencem a uma categoria (1:N)
+- students → courses: muitos alunos podem estar associados a um curso (1:N)
 
----
+## Estrutura Técnica
 
-## **CRUD de Estudantes**
-- Cadastro de estudantes
-- Listagem completa com nome do curso (JOIN)
-- Edição dos dados
-- Exclusão com verificação de relacionamento
-- Associação via chave estrangeira com a tabela Cursos
+O banco inclui índices para otimização de consultas:
+- idx_users_email - busca por email de usuários
+- idx_products_categoryId - busca de produtos por categoria
+- idx_students_courseId - busca de alunos por curso
+- idx_students_email - busca por email de alunos
 
----
+## Script Disponível
 
-## **CRUD de Cursos**
-- Criar cursos
-- Listar todos
-- Editar e excluir
-- Relacionamento 1:N com Alunos
-
----
-
-## **CRUD de Produtos**
-- Criar produto
-- Listar produtos
-- Editar produtos
-- Excluir produtos
-- Consulta por categoria
-
----
-
-# Requisitos Atendidos
-
-| Requisito | Status |
-|----------|--------|
-| Aplicação Web Completa | ok |
-| Arquitetura MVC | ok |
-| Frontend Responsivo | ok |
-| CRUD (Create, Read, Update, Delete) | ok |
-| 3+ entidades com CRUD completo | ok (Users, Students, Courses, Products) |
-| Relacionamentos com chave estrangeira | ok (Student → Course) |
-| Consultas com JOIN | ok |
-| Autenticação | ok (JWT) |
-| Criptografia de senha | ok (bcrypt) |
-| Banco de Dados Relacional | ok (MySQL) |
-| Documentação README | ok |
-
----
-
-# **Como Rodar o Projeto Completo**
-
-## Clonar o repositório.
-
-git clone https://github.com/lucianosg05/Projeto-Final-Web2
-cd Projeto-Final-Web2
-
-### Backend:
-
-- Instalar dependências
-
--- cd backend
--- npm install
-
-- Configurar o arquivo .env
-- Criar o banco de dados
-
-- Rodar o servidor backend
-Execute:
-
--- npm run dev
-
-### Frontend:
-
-- Instalar dependências
-  
--- cd frontend
--- npm install
-
-- Iniciar o frontend
-  
--- npm start
-
----
-
-# Conclusão
-
-Este projeto entrega uma aplicação web fullstack completa, responsiva e funcional, com integração total entre backend e frontend.
-Atende completamente aos requisitos acadêmicos: MVC, CRUD com relacionamentos, autenticação segura, banco relacional e documentação estruturada.
-
----
-
-# Tecnologias Utilizadas
-
-### **Backend**
-- Node.js
-- Express.js
-- Sequelize ORM
-- MySQL
-- Bcrypt
-- JWT
-- Nodemon
-
----
-
-### **Frontend**
-- React.js
-- React Router
-- Fetch API
-- Componentização
-- CSS responsivo
-
----
-
-### **Outras Tecnologias**
-- Git + GitHub
-- MVC Pattern
-- RESTful Routing
-
----
+banco.sql — contém a criação das tabelas, índices, chaves estrangeiras e regras de integridade referencial.
