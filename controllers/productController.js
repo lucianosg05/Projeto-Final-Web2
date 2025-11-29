@@ -19,7 +19,7 @@ create: async (req, res, next) => {
 	try {
 		const { name, description, price, categoryId } = req.body;
 		console.log('POST /api/products payload:', { name, description, price, categoryId });
-		// Validações básicas
+
 		if (!name || !name.toString().trim()) {
 			return res.status(400).json({ message: 'Nome do produto é obrigatório' });
 		}
@@ -29,7 +29,6 @@ create: async (req, res, next) => {
 			return res.status(400).json({ message: 'Preço inválido. Deve ser número maior que 0' });
 		}
 
-		// Converter para string com 2 casas decimais para evitar problemas com DECIMAL
 		const priceValue = parsedPrice.toFixed(2);
 
 		let finalCategoryId = null;
@@ -46,7 +45,7 @@ create: async (req, res, next) => {
 		res.status(201).json(p);
 	} catch (err) {
 		console.error('Erro ao criar produto:', err && err.stack ? err.stack : err);
-		// Retornar detalhe para frontend em desenvolvimento
+
 		return res.status(500).json({ message: 'Erro interno ao criar produto', details: err.message });
 	}
 },
@@ -64,7 +63,6 @@ if (price !== undefined && price !== null) {
 	p.price = parsed.toFixed(2);
 }
 
-// tratar categoryId verificando existência
 if (categoryId !== undefined) {
 	if (categoryId === null || categoryId === '') {
 		p.categoryId = null;
@@ -88,4 +86,5 @@ await p.destroy();
 res.json({ message: 'Removido' });
 } catch (err) { next(err); }
 }
+
 };
