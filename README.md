@@ -1,78 +1,47 @@
-# Banco de Dados — Sistema de Cursos e Produtos
+# Backend:
 
-Este banco de dados foi desenvolvido para gerenciar usuários, categorias, produtos, cursos e alunos. O modelo utiliza relacionamentos simples, chaves estrangeiras e organização relacional.
+Este backend foi desenvolvido utilizando **Node.js**, **Express**, **Sequelize (MySQL)** e arquitetura **MVC**, oferecendo CRUD completo para **Usuários**, **Alunos**, **Cursos** e **Produtos**, além de autenticação com **JWT**.
 
-## Tabelas Criadas
+---
 
-### 1. users
-Armazena os dados dos usuários do sistema (administradores e usuários comuns).
+## Resumo do Projeto
 
-Campos principais:
-- name
-- email (único)
-- password  
-- role (admin / user)
-- createdAt
-- updatedAt
+O backend implementa:
 
-### 2. categories
-Armazena categorias usadas para organizar produtos.
+- Estrutura MVC organizada (models, controllers, routes, middleware)
+- CRUD completo para:
+  - Usuários
+  - Estudantes
+  - Cursos
+  - Produtos
+- Autenticação segura com JWT
+- Middleware de proteção de rotas
+- Hash de senhas com bcrypt
+- Banco de dados MySQL utilizando Sequelize ORM
+- Tratamento global de erros
 
-Campos principais:
-- name
-- createdAt
-- updatedAt
+---
 
-### 3. courses
-Registra os cursos disponíveis na plataforma.
+## Como Rodar o Backend
 
-Campos principais:
-- title
-- description
-- createdAt
-- updatedAt
+### ** Pré-requisitos**
+Antes de iniciar, instale:
 
-### 4. products
-Armazena produtos associados a categorias.
+- **Node.js 16+**
+- **MySQL** em execução local
+- **npm** ou **yarn**
 
-Campos principais:
-- name
-- description
-- price (DECIMAL 10,2)
-- categoryId
-- createdAt
-- updatedAt
+---
 
-Relacionamentos:
-- categoryId → categories.id (N:1)
+### ** Instalar dependências**
 
-### 5. students
-Registra informações dos alunos.
+No terminal, dentro da pasta `backend/`:
 
-Campos principais:
-- name
-- email (único)
-- courseId
-- enrollmentDate (data de matrícula)
-- createdAt
-- updatedAt
+npm install
 
-Relacionamentos:
-- courseId → courses.id (N:1)
+---
 
-## Relacionamentos Principais
+### ** Usar também**
 
-- products → categories: muitos produtos pertencem a uma categoria (1:N)
-- students → courses: muitos alunos podem estar associados a um curso (1:N)
-
-## Estrutura Técnica
-
-O banco inclui índices para otimização de consultas:
-- idx_users_email - busca por email de usuários
-- idx_products_categoryId - busca de produtos por categoria
-- idx_students_courseId - busca de alunos por curso
-- idx_students_email - busca por email de alunos
-
-## Script Disponível
-
-banco.sql — contém a criação das tabelas, índices, chaves estrangeiras e regras de integridade referencial.
+npm start  
+npm run dev
